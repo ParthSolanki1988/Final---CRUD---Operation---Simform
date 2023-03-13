@@ -27,11 +27,11 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 ">
                 <h6 class="m-0 font-weight-bold text-primary d-lg-inline">Product Table</h6>
-                <button class="btn btn-primary ms-5" id="addProduct">Add Product</button>
+                <!-- <button class="btn btn-primary ms-5" id="addProduct">Add Product</button> -->
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered form" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered form" id="dataTable2" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Product id</th>
@@ -49,10 +49,13 @@
                             <tr>
                                 <td><input type="text" class="form-control" id="inId"></td>
                                 <td><input type="text" class="form-control" id="inName"></td>
-                                <td><input type="text" class="form-control" id="inImage"></td>
+                                <td>
+                                    <input class="form-control" type="file" id="inImage"/>
+                                </td>
                                 <td><input type="text" class="form-control" id="inPrice"></td>
                                 <td><input type="text" class="form-control" id="inDescription"></td>
-                                <td><button type="button" class="btn btn-success" id="btnInsert">Insert</button>
+                                <td><button type="button" class="btn btn-primary" id="btnInsert" onclick="btnInsert()">Add Product</button>
+                                    <!-- <img src="" alt=""> -->
                                 </td>
                             </tr>
 
@@ -70,12 +73,12 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 ">
                 <h6 class="m-0 font-weight-bold text-primary d-lg-inline">LocalStorage Table</h6>
-                <td><button type="button" class="btn btn-success" id="fetchProduct">Fetch</button>
+                <td><button type="button" class="btn btn-success" id="btnFetch" onclick="showData()">Fetch</button>
+                    <td><button type="button" class="btn btn-danger" id="btnAllClear" >All Clear</button>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <div class="lsOutput"></div>
+                    <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Product id</th>
@@ -88,33 +91,8 @@
                             </tr>
                         </thead>
                         <tbody id="tableBody"></tbody>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mihir</td>
-                                <td>0.05 rupees</td>
-                                <td></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-success">EDIT</button>
-                                </td>
-                                <td><button type="button" class="btn btn-danger">DELETE</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>2</td>
-                                <td>Tiffin Seva</td>
-                                <td>-1 Rupees</td>
-                                <td></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-success">EDIT</button>
-                                </td>
-                                <td><button type="button" class="btn btn-danger">DELETE</button>
-                                </td>
-                            </tr>
-
-
-                        </tbody>
+                        
+                        
                     </table>
                 </div>
             </div>

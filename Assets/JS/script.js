@@ -110,7 +110,6 @@ function btnInsert() {
 
 
 
-		//direct store image into localstorage and load the image from localstorage
 		const fr = new FileReader();
 		fr.readAsDataURL(isImage.files[0]);
 		fr.addEventListener('load', () => {
@@ -134,9 +133,9 @@ function btnInsert() {
 			//Convert a JavaScript object into a string with JSON.stringify(). now productArray is string and ready to sent to localstorage
 			localStorage.setItem("productArray", JSON.stringify(product));
 			location.reload();
-
+			
 		});
-
+		
 	}
 }
 
@@ -209,6 +208,7 @@ function btnEdit(index) {
 	var fileInput =
 		document.getElementById('inImage');
 
+
 	if (localStorage.getItem("productArray") == null) {
 		product = [];
 	}
@@ -217,23 +217,30 @@ function btnEdit(index) {
 	}
 	isId.value = product[index].id;
 	isName.value = product[index].name;
+	// isImage.value = 
 	isPrice.value = product[index].price;
 	isDesc.value = product[index].description;
 	document.getElementById("btnInsert").style.display = "none";
 	document.getElementById("btnUpdate").style.display = "block";
 
 	document.querySelector("#btnUpdate").onclick = function () {
-		window.location.reload();
-		product[index].id = isId.value;
-		product[index].name = isName.value;
+		let isImage = document.getElementById('inImage');
+		const fr = new FileReader();
+		fr.readAsDataURL(isImage.files[0]);
+		fr.addEventListener('load', () => {
+			let url = fr.result;
+			window.location.reload();
 
-		product[index].image = isImage.value;
-		product[index].image = isImage.files[0].name;
-		product[index].price = isPrice.value;
-		product[index].description = isDesc.value;
 
-		localStorage.setItem("productArray", JSON.stringify(product));
-		showData();
+			product[index].id = isId.value;
+			product[index].name = isName.value;
+			product[index].image = url;
+			product[index].price = isPrice.value;
+			product[index].description = isDesc.value;
+
+			localStorage.setItem("productArray", JSON.stringify(product));
+			showData();
+		});
 
 		document.getElementById("btnInsert").style.display = "block";
 		document.getElementById("btnUpdate").style.display = "none";

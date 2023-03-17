@@ -9,17 +9,17 @@ const isFetch = document.getElementById('fetchProduct');
 
 document.getElementById("btnUpdate").style.display = "none";
 
+
+//Validation for insert product data
 function validation() {
     let id = isId.value;
     let price = isPrice.value;
-    // console.log(id);
-    // console.log(typeof(id));
     let isIdReg = /^\d{4}$/;
     let isPriceReg = /\d/;
-    var fileInput =
-        document.getElementById('inImage');
+    // var fileInput =
+    //     document.getElementById('inImage');
 
-    var filePath = fileInput.value;
+    // var filePath = fileInput.value;
 
     if (id == "") {
         alert("Id must be filled out");
@@ -34,11 +34,11 @@ function validation() {
     else if (isName.value == "") {
         alert("Product Name must be filled out");
         return false;
-    } 
-    else if (filePath == "") {
-        alert("Please , Upload Images");
-        return false;
     }
+    // else if (filePath == "") {
+    //     alert("Please , Upload Images");
+    //     return false;
+    // }
 
     else if (isPrice.value == "") {
         alert("Price must be filled out");
@@ -55,34 +55,18 @@ function validation() {
         return false;
     }
 
-    else if (isDesc.value == "" ) {
+    else if (isDesc.value == "") {
         alert("Description must be filled out");
         return false;
     }
-    
-    else{
+
+    else {
         return true;
     }
-
-
-
-    // if(isId.value == "" || isName.value == "" || isImage.value == "" || isPrice.value == "" || isDesc.value == ""){
-    //     alert("Data Enter on Filed ");
-    //     return false;
-    // }
-
-    // if(isPrice.value < 0 ){
-    //     alert("Please , Enter Price Positive");
-    //     return false;
-    // } 
-
-    // if(isPrice.value == "" || isPrice.value  )
-    // return true;
-
 }
 
 
-//image file validation 
+//image file validation for allow only (jpeg , jpg , png) files
 function fileValidation() {
     var fileInput =
         document.getElementById('inImage');
@@ -100,7 +84,36 @@ function fileValidation() {
     }
 }
 
+function filter(){
+     // Declare variables
+  
+  var filterInput = document.getElementById("filterProduct").value;
+//   console.log(filterInput);
+  var table = document.querySelectorAll(".productItems");
+  console.log(table.length);
+//   var tr = table.getElementsByTagName("tr");
+//   console.log(tr);
 
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < table.length; i++) {
+    // console.log(i);
+    var td = table[i].getElementsByTagName("td")[0];
+
+    // console.log(td);
+    if (td) {
+      var txtValue = td.innerHTML;
+    //   console.log(txtValue);
+      if (txtValue.indexOf(filterInput) > -1) {
+        table[i].style.display = "";
+      } else {
+        table[i].style.display = "none";
+      }
+    }
+  }
+}
+
+
+//click on Add Product and insert data
 function btnInsert() {
     if (validation() == true) {
         const id = isId.value;
@@ -134,6 +147,8 @@ function btnInsert() {
 }
 
 
+
+//show the data
 window.onload = function showData() {
 
     let product;
@@ -146,7 +161,7 @@ window.onload = function showData() {
     let html = "";
     product.forEach(function (element, index) {
 
-        html += "<tr>";
+        html += "<tr class='productItems'>";
         html += "<td>" + element.id + "</td>";
         html += "<td>" + element.name + "</td>";
         // html += "<td><img src=./" + element.image + " width='100px' height='100px'></td>";
@@ -162,6 +177,8 @@ window.onload = function showData() {
 
 }
 
+
+//click on delete and delete that product
 function btnDelete(element) {
 
     let product;
@@ -181,6 +198,7 @@ function btnDelete(element) {
 }
 
 
+//when we click on All Clear button and clear All product from localstorage and on display
 function clearAllData() {
     localStorage.clear();
 
@@ -190,14 +208,15 @@ function clearAllData() {
 }
 
 
+//click on Edit button and update data
 function btnEdit(index) {
     let product;
 
     var fileInput =
         document.getElementById('inImage');
-       
-        // fileInput.value = isImage.files[0];
-        console.log(fileInput.value);
+
+    // fileInput.value = isImage.files[0];
+    console.log(fileInput.value);
 
     if (localStorage.getItem("productArray") == null) {
         product = [];
@@ -218,7 +237,7 @@ function btnEdit(index) {
         window.location.reload();
         product[index].id = isId.value;
         product[index].name = isName.value;
-        
+
         product[index].image = isImage.value;
         product[index].image = isImage.files[0].name;
         product[index].price = isPrice.value;
@@ -236,11 +255,20 @@ function btnEdit(index) {
 }
 
 
+// // For sorting
+// function sortProduct(){
+    
+    
 
-
-
-
-
-
-
+//     var optvalue = document.getElementById('sort').value;
+//     // console.log(optvalue);
+//     var  product = JSON.parse(localStorage.getItem("productArray"));
+//     for (let index = 0; index < product.length; index++) {
+//         // console.log(product[index].id);
+//         const p_id = product[index].id;
+//     }
+   
+//     localStorage.setItem("productArray",JSON.stringify(productArray));
+//     showData();
+// }
 

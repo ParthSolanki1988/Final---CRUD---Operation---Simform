@@ -79,14 +79,17 @@
                 <h6 class="m-0 font-weight-bold text-primary d-lg-inline">LocalStorage Table</h6>
                 <!-- <td class="d-flex justify-content-end"><button type="button" class="btn btn-success" id="btnFetch" onclick="showData()">Fetch</button></td> -->
                     <td><button type="button" class="btn btn-danger" id="btnAllClear" onclick="clearAllData()">All Clear</button></td>
+                    <input type="text" placeholder="Filter By Product id" class="rounded-2" id="filterProduct" onkeyup="filter()" >
                     <td><div class="col-sm-1">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Sort By</option>
-                            <option value="1">Product id</option>
-                            <option value="2">Product Name</option>
-                            <option value="3">Price</option>
+                        <select class="form-select" aria-label="Default select example" onchange="sortProduct()" id="sort">
+                            <option selected disabled>Sort By</option>
+                            <option value="p_id">Product id</option>
+                            <option value="p_name">Product Name</option>
+                            <option value="p_price">Price</option>
                           </select>
                     </div></td>
+                    
+                    
             </div>
             <div class="card-body">
                 <div class="table-responsive">

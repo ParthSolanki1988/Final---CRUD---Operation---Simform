@@ -15,8 +15,10 @@ function validation() {
 	let id = isId.value;
 	let price = isPrice.value;
 	let image = isImage.files;
+	let name = isName.value;
 	let isIdReg = /^\d{4}$/;
 	let isPriceReg = /\d/;
+	let isNameReg = /^[A-Za-z]+$/;
 
 	if (id == "") {
 		alert("Id must be filled out");
@@ -25,6 +27,10 @@ function validation() {
 
 	else if (!id.match(isIdReg)) {
 		alert("ID must be 4 digit");
+		return false;
+	}
+	else if(!name.match(isNameReg)){
+		alert("Must be Alphabet allowed");
 		return false;
 	}
 

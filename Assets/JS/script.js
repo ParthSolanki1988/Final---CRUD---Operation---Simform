@@ -14,6 +14,7 @@ document.getElementById("btnUpdate").style.display = "none";
 function validation() {
 	let id = isId.value;
 	let price = isPrice.value;
+	let image = isImage.files;
 	let isIdReg = /^\d{4}$/;
 	let isPriceReg = /\d/;
 
@@ -29,6 +30,10 @@ function validation() {
 
 	else if (isName.value == "") {
 		alert("Product Name must be filled out");
+		return false;
+	}
+	else if (image.length == "") {
+		alert("image must be filled out");
 		return false;
 	}
 
@@ -65,6 +70,8 @@ function fileValidation() {
 		document.getElementById('inImage');
 
 	var filePath = fileInput.value;
+
+
 
 	// Allowing file type
 	var allowedExtensions =
@@ -203,6 +210,7 @@ function clearAllData() {
 
 //click on Edit button and update data
 function btnEdit(index) {
+	let image = isImage.files ;
 	let product;
 
 	var fileInput =
@@ -217,7 +225,7 @@ function btnEdit(index) {
 	}
 	isId.value = product[index].id;
 	isName.value = product[index].name;
-	// isImage.value = 
+	
 	isPrice.value = product[index].price;
 	isDesc.value = product[index].description;
 	document.getElementById("btnInsert").style.display = "none";
@@ -225,10 +233,15 @@ function btnEdit(index) {
 
 	document.querySelector("#btnUpdate").onclick = function () {
 		let isImage = document.getElementById('inImage');
+		let image = isImage.files;
+		if(image.length == ""){
+			alert("image must be filled out");
+		}
 		const fr = new FileReader();
 		fr.readAsDataURL(isImage.files[0]);
 		fr.addEventListener('load', () => {
 			let url = fr.result;
+
 			window.location.reload();
 
 

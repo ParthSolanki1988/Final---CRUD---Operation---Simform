@@ -88,6 +88,16 @@ function fileValidation() {
 		fileInput.value = '';
 		return false;
 	}
+	else{
+		let kb = isImage.files[0].size / 1024; // convert the file size into byte to kb
+		let mb = kb / 1024; // convert kb to mb
+	
+		if(mb > 1){
+			alert("image size must be less then 1 MB");
+			isImage.value = '';
+		}
+		
+	}
 }
 
 function filter() {
@@ -240,9 +250,11 @@ function btnEdit(index) {
 	document.querySelector("#btnUpdate").onclick = function () {
 		let isImage = document.getElementById('inImage');
 		let image = isImage.files;
+		
 		if(image.length == ""){
 			alert("image must be filled out");
 		}
+	
 		const fr = new FileReader();
 		fr.readAsDataURL(isImage.files[0]);
 		fr.addEventListener('load', () => {
